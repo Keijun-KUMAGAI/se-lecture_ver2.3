@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '#)+la*os#$hmyfxkby!sm5qq6jho+*u6%bfq)6h2xsml$s^zi%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['se-lecture-ver2-2.herokuapp.com' ]
+ALLOWED_HOSTS = ['se-lecture-nagoya.herokuapp.com' ]
 
 
 # Application definition
