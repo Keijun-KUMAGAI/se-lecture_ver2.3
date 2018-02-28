@@ -1,0 +1,79 @@
+<!doctype html>
+{%load staticfiles%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Carbon - Admin Template</title>
+    <link rel="stylesheet" href="{%static '/vendor/simple-line-icons/css/simple-line-icons.css'%}">
+    <link rel="stylesheet" href="{%static '/vendor/font-awesome/css/fontawesome-all.min.css'%}">
+    <link rel="stylesheet" href="{%static '/css/styles.css'%}">
+</head>
+<body>
+<div class="page-wrapper flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card p-4">
+                    <div class="card-header text-center text-uppercase h4 font-weight-light">
+                        Register
+                    </div>
+
+                    <!-- {% include "student/form.html" with form=form %} -->
+                    <form class="" action="" method="post">
+                      {%csrf_token%}
+                      <div class="card-body py-5">
+                          <div class="form-group">
+                              <label class="form-control-label">Name</label>
+                              <input type="username" name='username' class="form-control">
+                          </div>
+
+                          <div class="form-group">
+                              <label class="form-control-label">Email</label>
+                              <input type="email" name='email' class="form-control">
+                          </div>
+
+                          <div class="form-group">
+                              <label class="form-control-label">Password</label>
+                              <input type="password" name='password' class="form-control">
+                          </div>
+
+                          <div class="form-group">
+                              <label class="form-control-label">Confirm Password</label>
+                              <input type="password" name='password2' class="form-control">
+                          </div>
+                          <div class="form-group">
+                              <label for="single-select">Department</label>
+                              <select id="single-select" name='department' class="form-control">
+                                  <option value="文学部">文学部</option>
+                                  <option value="教育学部">教育学部</option>
+                                  <option value="法学部">法学部</option>
+                                  <option value="経済学部">経済学部</option>
+                                  <option value="情報学部" selected="">情報学部/情報文化学部</option>
+                                  <option value="理学部">理学部</option>
+                                  <option value="医学部">医学部</option>
+                                  <option value="工学部">工学部</option>
+                                  <option value="農学部">農学部</option>
+                              </select>
+                          </div>
+                      </div>
+
+                      <div class="card-footer">
+                          <button type="submit" class="btn btn-success btn-block">Create Account</button>
+                      </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static '/vendor/jquery/jquery.min.js'%}"></script>
+<script src="{% static '/vendor/popper.js/popper.min.js'%}"></script>
+<script src="{% static '/vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+<script src="{% static '/vendor/chart.js/chart.min.js'%}"></script>
+<script src="{% static '/js/carbon.js'%}"></script>
+<script src="{% static '/js/demo.js'%}"></script>
+</body>
+</html>

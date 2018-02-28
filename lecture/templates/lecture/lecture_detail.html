@@ -1,0 +1,223 @@
+{%extends 'base.html'%}
+{%block content%}
+<div class="row">
+    <div class="col-md-3">
+        <div class="card p-4">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="h4 d-block font-weight-normal mb-2">{{lecture.get_score_pass}}</span>
+                    <span class="font-weight-light">みんなの楽単度の評価</span>
+                </div>
+
+                <div class="h2 text-muted">
+                    <i class="icon icon-people"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-4">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="h4 d-block font-weight-normal mb-2">{{lecture.get_score_professor}}</span>
+                    <span class="font-weight-light">みんなの教授の評価</span>
+                </div>
+
+                <div class="h2 text-muted">
+                    <i class="icon icon-people"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-4">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="h4 d-block font-weight-normal mb-2">{{lecture.credit}} Credit</span>
+                    <span class="font-weight-light">単位数</span>
+                </div>
+
+                <div class="h2 text-muted">
+                    <i class="icon icon-wallet"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-4">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="h4 d-block font-weight-normal mb-2">{{lecture.popular}}</span>
+                    <span class="font-weight-light">登録者数</span>
+                </div>
+
+                <div class="h2 text-muted">
+                    <i class="icon icon-cloud-download"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- main content -->
+    <div class="card">
+        <div class="card-header bg-light">
+           {{lecture.title}}
+        </div>
+
+        <div class="card-body">
+            <div class="row mb-5">
+                <!-- <div class="col-md-4 mb-4">
+                    <div>Profile Information</div>
+                    <div class="text-muted small">These information are visible to the public.</div>
+                </div> -->
+
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <b><label class="form-control-label">教授名</label></b>
+                                <p class="form-control-plaintext">{{lecture.professor_name}}</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <b><label class="form-control-label">時間/場所</label></b>
+                                <p class="form-control-plaintext">{{lecture.get_day}}曜日/{{lecture.time}}限目/{{lecture.location}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <b><label class="form-control-label">シラバス</label></b>
+                            <p class="form-control-plaintext">
+                              <a href="{{lecture.syllabus}}">{{lecture.syllabus}}</a>
+                            </p>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <b><label class="form-control-label">対象学部/講義タイプ</label></b>
+                                <p class="form-control-plaintext">{{lecture.target}}/{{lecture.lecture_type}}</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <b><label class="form-control-label">開講年度</label></b>
+                                <p class="form-control-plaintext">{{lecture.year}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- <div class="row">
+
+                    </div> -->
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <b><label class="form-control-label">Description</label></b>
+                                <p>{{lecture.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="card-footer bg-light text-right">
+          <form class="" action="{{lecture.get_absolute_url_for_update}}" method="get">
+            <button type="submit" class="btn btn-primary">Edit The Lecture</button>
+          </form>
+        </div>
+    </div>
+<!-- end main content -->
+
+
+
+    <div class="row mt-4">
+        {%for review in review_list%}
+
+          <div class="col-md-4">
+              <div class="card border-0">
+
+                  <div class="card-header bg-light">
+                    <b class="text-left">{{review.title}}</b>
+                    {%if student == review.student%}
+                      <div class="text-right">
+                        <a href="{{review.get_url_for_update}}" class="text-right">Edit</a> /
+                        <a href="{{review.get_url_for_delete}}" >Delete</a>
+                      </div>
+                    {%endif%}
+                  </div>
+
+
+                  <div class="card-body bg-success">
+                      <p>内容:{{review.rate_pass}}/教授:{{review.rate_professor}}</p>
+                      <p>{{review.comment}}</p>
+                  </div>
+
+              </div>
+
+          </div>
+        {%endfor%}
+
+    </div>
+  <form class="" action="{{lecture.get_absolute_url}}" method="post">
+    {%csrf_token%}
+    <div class="card">
+        <div class="card-header bg-light">Write A Review</div>
+        <div class="card-body">
+            <div class="row mt-4">
+                {%include 'lecture/create_form.html' with display='タイトル' name='title'%}
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="single-select">講義の評価</label>
+                        <select id="single-select" name="rate_pass" class="form-control">
+                            <option value="100">S：100</option>
+                            <option value="90">A：90</option>
+                            <option value="80">B：80</option>
+                            <option value="70">C：70</option>
+                            <option value="60">F：60</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="single-select">教授の評価</label>
+                        <select id="single-select" name="rate_professor" class="form-control">
+                            <option value="100">S：100</option>
+                            <option value="90">A：90</option>
+                            <option value="80">B：80</option>
+                            <option value="70">C：70</option>
+                            <option value="60">F：60</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="textarea">レビュー</label>
+                        <textarea id="textarea" name='comment'class="form-control" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer bg-light text-center">
+            <button type="submit" class="btn btn-success">Create</button>
+        </div>
+    </div>
+  </form>
+
+
+
+{%endblock%}

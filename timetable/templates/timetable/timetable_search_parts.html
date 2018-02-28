@@ -1,0 +1,53 @@
+<div class="row">
+  {%if lecture_list%}
+      {%for lecture in lecture_list%}
+            <div class="col-md-6 mb-4">
+                <a href="{{lecture.get_absolute_url}}"><h4>{{lecture.title}}/{{lecture.professor_name}}</h4></a>
+
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#{{lecture.id}}" role="tab" aria-controls="home">{{lecture.title}}</a>
+
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#{{lecture.professor_name}}" role="tab" aria-controls="profile">講義の説明</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+
+                    <div class="tab-pane active" id="{{lecture.id}}" role="tabpanel">
+                      {{lecture.get_day}}曜日/{{lecture.time}}限目  {{lecture.lecture_type}}
+                      <hr>
+                      落単度/{{lecture.get_score_pass}}
+                      教授度/{{lecture.get_score_professor}}
+                      登録者数/{{lecture.popular}}
+                      <div class="text-right">
+                        <form class="" action="{%url 'timetable:register'%}" method="get" accept-charset="utf-8">
+                            <input type="hidden" name="timetable_id" value="{{timetable_id}}">
+                            <input type="hidden" name="lecture_id" value="{{lecture.id}}">
+                            <input type="hidden" name="time" value="{{lecture.time}}">
+                            <input type="hidden" name="day" value="{{lecture.day}}">
+                            <button type="submit" class="btn btn-primary">Register Class</button>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="tab-pane" id="{{lecture.professor_name}}" role="tabpanel">
+                      {{lecture.description}}
+                    </div>
+                    <!-- <div class="tab-pane" id="{{lecture.id}}" role="tabpanel">
+                    </div> -->
+                    <div class="tab-pane" id="{{lecture.id}}" role="tabpanel">
+                    </div>
+                </div>
+            </div>
+      {%endfor%}
+  {%else%}
+    <div class="col-md-6 mb-4">
+      <h1>講義が見つかりませんでした。</h1>
+    </div>
+
+  {%endif%}
+
+
+</div><!-- end row -->

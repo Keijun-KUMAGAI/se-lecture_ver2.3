@@ -1,0 +1,40 @@
+{%extends 'base.html'%}
+{%block content%}
+  <form action="{%url 'lecture:create'%}" method="POST" accept-charset="utf-8">
+    {%csrf_token%}
+            <div class="card">
+                <div class="card-header bg-light">
+                    Basic Forms
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                    </div>
+
+                    <div class="row mt-4">
+                        {%include 'lecture/create_form_2.html'%}
+                        {%include 'lecture/create_form.html' with display='講義コード' name='lecture_code'%}
+                        {%include 'lecture/create_form.html' with display='講義名' name='title'%}
+                        {%include 'lecture/create_form.html' with display='教授名' name='professor_name'%}
+                        {%include 'lecture/create_form.html' with display='対象学部' name='target'%}
+                        {%include 'lecture/create_form.html' with display='シラバスURL' name='syllabus'%}
+                        {%include 'lecture/create_form.html' with display='講義開講場所' name='location'%}
+                        {%include 'lecture/create_form.html' with display='単位数' name='credit'%}
+                        {%include 'lecture/create_form.html' with display='年度' name='year'%}
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="textarea">講義の詳細</label>
+                                <textarea id="textarea" name='description'class="form-control" rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-light text-center">
+                    <button type="submit" class="btn btn-success btn-block">Create</button>
+                </div>
+            </div><!-- card end -->
+  </form>
+
+{%endblock%}

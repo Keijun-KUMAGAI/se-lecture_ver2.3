@@ -1,0 +1,250 @@
+{%extends 'base.html'%}
+{%block content%}
+
+    <div class="row">
+      <div class="col-md-3">
+          <div class="card p-4">
+              <div class="card-body d-flex justify-content-between align-items-center">
+                  <div>
+                      <span class="h4 d-block font-weight-normal mb-2">{{student_all.count}} students</span>
+                      <span class="font-weight-light">生徒数</span>
+                  </div>
+
+                  <div class="h2 text-muted">
+                      <i class="icon icon-people"></i>
+                  </div>
+              </div>
+          </div>
+      </div>
+        <div class="col-md-3">
+            <div class="card p-4">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="h4 d-block font-weight-normal mb-2">{{user_all.count}} users</span>
+                        <span class="font-weight-light">ユーザー数</span>
+                    </div>
+
+                    <div class="h2 text-muted">
+                        <i class="icon icon-people"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card p-4">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="h4 d-block font-weight-normal mb-2">{{lecture_all.count}} lectures</span>
+                        <span class="font-weight-light">登録講義数</span>
+                    </div>
+
+                    <div class="h2 text-muted">
+                        <i class="icon icon-wallet"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card p-4">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="h4 d-block font-weight-normal mb-2">{{review_all.count}} reviews</span>
+                        <span class="font-weight-light">レビュー数</span>
+                    </div>
+
+                    <div class="h2 text-muted">
+                        <i class="icon icon-cloud-download"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="card">
+              <div class="card-header bg-light">
+                  {{timetable.title}}
+
+              </div>
+
+
+
+
+
+              <div class="card-header bg-light">
+                <div class="row">
+                  {%for timetable in timetable_list%}
+                    <div class="col-md-auto" style="width:100px;margin:2px;">
+                      <form action="{%url 'timetable:detail'%}" method="get" accept-charset="utf-8">
+                        <input type="hidden" name="timetable_id" value="{{timetable.id}}">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-align-center"></i> &nbsp; {{timetable.title}}</button>
+                      </form>
+                    </div>
+                  {%endfor%}
+                </div>
+
+              </div>
+
+              <div class="card-body">
+                  <div class="table-responsive">
+                      <table class="table table-bordered">
+                        <thead>
+                         <tr>
+                            <th>月</th>
+                            <th>火</th>
+                            <th>水</th>
+                            <th>木</th>
+                            <th>金</th>
+                         </tr>
+                        </thead>
+                        <tbody>
+                         <tr style = "height:100px;">
+                            <td>
+                              {%include 'timetable/form.html' with time=1 day=1 timetable=timetable lecture_box=timetable.mon1 %}
+                            </td>
+                            <td>
+                              {%include 'timetable/form.html' with time=1 day=2 timetable=timetable lecture_box=timetable.tue1 %}
+                            </td>
+                            <td>
+                              {%include 'timetable/form.html' with time=1 day=3 timetable=timetable lecture_box=timetable.wed1 %}
+                            </td>
+                            <td>
+                              {%include 'timetable/form.html' with time=1 day=4 timetable=timetable lecture_box=timetable.thu1 %}
+                            </td>
+                            <td>
+                              {%include 'timetable/form.html' with time=1 day=5 timetable=timetable lecture_box=timetable.fri1 %}
+                            </td>
+                         </tr>
+                         <tr style = "height:100px;">
+                           <td>
+                             {%include 'timetable/form.html' with time=2 day=1 timetable=timetable lecture_box=timetable.mon2 %}
+                           </td>
+                           <td>
+                             {%include 'timetable/form.html' with time=2 day=2 timetable=timetable lecture_box=timetable.tue2 %}
+                           </td>
+                           <td>
+                             {%include 'timetable/form.html' with time=2 day=3 timetable=timetable lecture_box=timetable.wed2 %}
+                           </td>
+                           <td>
+                             {%include 'timetable/form.html' with time=2 day=4 timetable=timetable lecture_box=timetable.thu2 %}
+                           </td>
+                           <td>
+                             {%include 'timetable/form.html' with time=2 day=5 timetable=timetable lecture_box=timetable.fri2 %}
+                           </td>
+                         </tr>
+                         <tr style = "height:100px;">
+                           <td>
+                             {%include 'timetable/form.html' with time=3 day=1 timetable=timetable lecture_box=timetable.mon3 %}
+                           </td>
+                           <td>
+                             {%include 'timetable/form.html' with time=3 day=2 timetable=timetable lecture_box=timetable.tue3 %}
+                           </td>
+                           <td>
+                             {%include 'timetable/form.html' with time=3 day=3 timetable=timetable lecture_box=timetable.wed3 %}
+                           </td>
+                           <td>
+                             {%include 'timetable/form.html' with time=3 day=4 timetable=timetable lecture_box=timetable.thu3 %}
+                           </td>
+                           <td>
+                             {%include 'timetable/form.html' with time=3 day=5 timetable=timetable lecture_box=timetable.fri3 %}
+                           </td>
+                         </tr>
+                         <tr style = "height:100px;">
+                           <td>
+                             {%include 'timetable/form.html' with time=4 day=1 timetable=timetable lecture_box=timetable.mon4 %}
+                           </td>
+                           <td>
+                             {%include 'timetable/form.html' with time=4 day=2 timetable=timetable lecture_box=timetable.tue4 %}
+                           </td>
+                           <td>
+                             {%include 'timetable/form.html' with time=4 day=3 timetable=timetable lecture_box=timetable.wed4 %}
+                           </td>
+                           <td>
+                             {%include 'timetable/form.html' with time=4 day=4 timetable=timetable lecture_box=timetable.thu4 %}
+                           </td>
+                           <td>
+                             {%include 'timetable/form.html' with time=4 day=5 timetable=timetable lecture_box=timetable.fri4 %}
+                           </td>
+                         </tr>
+                         <tr style = "height:100px;">
+                           <td>
+                             {%include 'timetable/form.html' with time=5 day=1 timetable=timetable lecture_box=timetable.mon5 %}
+                           </td>
+                           <td>
+                             {%include 'timetable/form.html' with time=5 day=2 timetable=timetable lecture_box=timetable.tue5 %}
+                           </td>
+                           <td>
+                             {%include 'timetable/form.html' with time=5 day=3 timetable=timetable lecture_box=timetable.wed5 %}
+                           </td>
+                           <td>
+                             {%include 'timetable/form.html' with time=5 day=4 timetable=timetable lecture_box=timetable.thu5 %}
+                           </td>
+                           <td>
+                             {%include 'timetable/form.html' with time=5 day=5 timetable=timetable lecture_box=timetable.fri5 %}
+                           </td>
+                         </tr>
+
+                        </tbody>
+                      </table>
+                  </div>
+              </div>
+
+            </div>
+        </div>
+    </div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+        <div class="card-header bg-light">
+            <h4>成績表</h3>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                    {% include 'timetable/grade_table.html' with display='基礎セミナー' point=grade.basic_seminar%}
+                    {% include 'timetable/grade_table.html' with display='言語文化' point=grade.language_english%}
+                    {% include 'timetable/grade_table.html' with display='健康・スポーツ化学' point=grade.sport%}
+                    {% include 'timetable/grade_table.html' with display='文系基礎' point=grade.human_basic%}
+                    {% include 'timetable/grade_table.html' with display='理系基礎（文系）' point=grade.science_basic_human%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+        <!-- <div class="card-header bg-light">
+            Striped Rows
+        </div> -->
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                      {% include 'timetable/grade_table.html' with display='理系基礎（理系）' point=grade.science_basic_science%}
+                      {% include 'timetable/grade_table.html' with display='文系教養' point=grade.liberal_human%}
+                      {% include 'timetable/grade_table.html' with display='理系教養' point=grade.liberal_science%}
+                      {% include 'timetable/grade_table.html' with display='全額教養' point=grade.liberal_all%}
+                      {% include 'timetable/grade_table.html' with display='開放科目' point=grade.liberal_free%}
+                      {% include 'timetable/grade_table.html' with display='専門科目' point=grade.major%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+{%endblock%}

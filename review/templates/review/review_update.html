@@ -1,0 +1,55 @@
+{%extends 'base.html'%}
+{%block content%}
+
+  <form class="" action="" method="post">
+    {%csrf_token%}
+    <div class="card">
+        <div class="card-header bg-light">Write A Review</div>
+        <div class="card-body">
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="placeholder-input" class="form-control-label">タイトル</label>
+                        <input id="placeholder-input" name=title class="form-control" placeholder="{{display}}" value="{{review.title}}">
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="single-select">講義の評価</label>
+                        <select id="single-select" name="rate_pass" class="form-control" default="{{review.rate_pass}}">
+                            <option value="100">S：100</option>
+                            <option value="90">A：90</option>
+                            <option value="80">B：80</option>
+                            <option value="70">C：70</option>
+                            <option value="60">F：60</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="single-select">教授の評価</label>
+                        <select id="single-select" name="rate_professor" class="form-control" default="{{review.rate_professor}}">
+                            <option value="100">S：100</option>
+                            <option value="90">A：90</option>
+                            <option value="80">B：80</option>
+                            <option value="70">C：70</option>
+                            <option value="60">F：60</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="textarea">レビュー</label>
+                        <textarea id="textarea" name='comment'class="form-control" rows="2">{{review.comment}}</textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer bg-light text-center">
+            <button type="submit" class="btn btn-success">Update</button>
+        </div>
+    </div>
+  </form>
+{%endblock%}

@@ -1,0 +1,56 @@
+{%extends 'base.html'%}
+{%block content%}
+
+    <!-- 講義の種類絞り -->
+    <form action="{%url 'timetable:search'%}" method="get" accept-charset="utf-8">
+      <div class="row">
+        {% include 'lecture/search_form.html' with display='基礎セミナー' name='lecture_type' value='基礎セミナー'%}
+        {% include 'lecture/search_form.html' with display='言語文化Ⅰ' name='lecture_type' value='言語文化Ⅰ'%}
+        {% include 'lecture/search_form.html' with display='言語文化Ⅱ' name='lecture_type' value='言語文化Ⅱ'%}
+        {% include 'lecture/search_form.html' with display='言語文化Ⅲ' name='lecture_type' value='言語文化Ⅲ'%}
+        {% include 'lecture/search_form.html' with display='健康・スポーツ科学' name='lecture_type' value='健康・スポーツ科学'%}
+        {% include 'lecture/search_form.html' with display='文系基礎科目' name='lecture_type' value='文系基礎科目'%}
+        {% include 'lecture/search_form.html' with display='理系基礎科目（文系）' name='lecture_type' value='理系基礎科目（文系）'%}
+        {% include 'lecture/search_form.html' with display='理系基礎科目（理系）' name='lecture_type' value='理系基礎科目（理系）'%}
+        {% include 'lecture/search_form.html' with display='文系教養科目' name='lecture_type' value='文系教養科目'%}
+        {% include 'lecture/search_form.html' with display='理系教養科目' name='lecture_type' value='理系教養科目'%}
+        {% include 'lecture/search_form.html' with display='全学教養科目' name='lecture_type' value='全学教養科目'%}
+        {% include 'lecture/search_form.html' with display='開放科目' name='lecture_type' value='開放科目'%}
+        {% include 'lecture/search_form.html' with display='文学部専門' name='lecture_type' value='文学部専門'%}
+        {% include 'lecture/search_form.html' with display='教育学部専門' name='lecture_type' value='教育学部専門'%}
+        {% include 'lecture/search_form.html' with display='法学部専門' name='lecture_type' value='法学部専門'%}
+        {% include 'lecture/search_form.html' with display='経済学部専門' name='lecture_type' value='経済学部専門'%}
+        {% include 'lecture/search_form.html' with display='情報学部専門/情報文化学部専門' name='lecture_type' value='情報学部専門'%}
+        {% include 'lecture/search_form.html' with display='理学部専門' name='lecture_type' value='理学部専門'%}
+        {% include 'lecture/search_form.html' with display='医学部専門' name='lecture_type' value='医学部専門'%}
+        {% include 'lecture/search_form.html' with display='工学部専門' name='lecture_type' value='工学部専門'%}
+        {% include 'lecture/search_form.html' with display='農学部専門' name='lecture_type' value='農学部専門'%}
+      </div>
+      <input type="hidden" name="timetable_id" value="{{timetable_id}}">
+      <input type="hidden" name="time" value="{{time}}">
+      <input type="hidden" name="day" value="{{day}}">
+      <div class="text-right">
+        <button type="submit" class="btn btn-success">検索条件を絞る</button>
+      </div>
+    </form>
+    <hr>
+    <!-- end 講義の種類絞り -->
+  {%include 'timetable/timetable_search_parts.html'%}
+
+  <div class="pagination">
+  <span class="step-links">
+  {% if page_obj.has_previous %}
+  <a href="?{{ query_string }}&page={{ page_obj.previous_page_number }}">previous</a>
+  {% endif %}
+  <span class="current">
+  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+  </span>
+  {% if page_obj.has_next %}
+  <a href="?{{ query_string }}&page={{ page_obj.next_page_number }}">next</a>
+  {% endif %}
+  </span>
+  </div>
+
+
+
+{%endblock%}
