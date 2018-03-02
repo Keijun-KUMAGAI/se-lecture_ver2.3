@@ -1,3 +1,3 @@
-# se-lecture_ver2.0
-# se-lecture_ver2.2
 # se-lecture_ver2.3
+2017年版のデータが入ってる。
+来るべき２０１８に備えて準備中・・・
