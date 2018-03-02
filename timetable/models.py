@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 class TimetableManager(models.Manager):
 
     def get_two_timetable_and_grade(self, request):
-        request.session.set_expiry(3600)
+#         request.session.set_expiry(3600)
         if request.user.is_authenticated():
             timetable_id = request.GET.get('timetable_id',None)
             if timetable_id:
